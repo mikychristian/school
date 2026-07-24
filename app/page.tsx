@@ -70,50 +70,49 @@ function Navbar() {
 // Hero Section
 function Hero() {
   return (
-    <section id="accueil" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="accueil" className="relative overflow-hidden">
       <Image src={IMAGES.hero} alt="Hero" fill className="object-cover" priority />
-      <div className="absolute inset-0 bg-black/50" />
-      
+      <div className="absolute inset-0 bg-black/60" />
+
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 text-center text-white max-w-3xl px-4"
+        className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-24 sm:px-10"
       >
-        <div className="inline-flex items-center gap-2 mb-4 px-5 py-3 bg-white/15 backdrop-blur-md rounded-full border border-white/30">
-          <span className="text-sm font-semibold uppercase tracking-[0.24em] text-white/90">✨ Rentrée 12 Octobre 2026</span>
-        </div>
+        <div className="max-w-3xl">
+          <span className="inline-flex rounded-full border border-orange-400/40 bg-orange-400/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
+            Institut professionnel IFP-MTC AFES
+          </span>
 
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-[-0.04em] text-white">
-          Découvrez l'excellence technique et hôtelière
-          <span className="block text-orange-300">d'IFP-MTC AFES</span>
-        </h1>
+          <h1 className="mt-8 text-5xl font-extrabold leading-tight tracking-[-0.04em] text-white sm:text-6xl">
+            L’excellence professionnelle, sculptée au cœur de Douala
+          </h1>
 
-        <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-100/90 mb-8">
-          Des programmes premium, une pédagogie immersive et un accompagnement vers l'emploi durable pour chaque étudiant.
-        </p>
+          <p className="mt-6 text-lg leading-8 text-slate-100 sm:text-xl">
+            Formation technique, digitale et hôtelière avec un design de parcours inspiré par les meilleurs codes africains du futur.
+          </p>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center sm:items-center">
-          <a href="#filières" className="inline-flex items-center justify-center px-10 py-4 bg-orange-500 text-white font-bold rounded-full shadow-xl hover:bg-orange-600 transition transform hover:-translate-y-0.5">
-            Voir les formations
-          </a>
-          <a href="#contact" className="inline-flex items-center justify-center px-10 py-4 bg-white text-slate-900 font-semibold rounded-full shadow-lg hover:bg-slate-100 transition">
-            Contactez-nous
-          </a>
-        </div>
-
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-5xl mx-auto text-center">
-          <div className="rounded-[2rem] bg-white/10 border border-white/20 p-7 shadow-2xl backdrop-blur-md">
-            <h3 className="text-4xl font-extrabold text-white">500+</h3>
-            <p className="mt-3 text-sm uppercase tracking-[0.2em] text-slate-300">Étudiants formés</p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href="#filières" className="inline-flex min-w-[180px] items-center justify-center rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600">
+              Nos Filières
+            </a>
+            <a href="#contact" className="inline-flex min-w-[180px] items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/20">
+              Contactez-nous
+            </a>
           </div>
-          <div className="rounded-[2rem] bg-white/10 border border-white/20 p-7 shadow-2xl backdrop-blur-md">
-            <h3 className="text-4xl font-extrabold text-white">18</h3>
-            <p className="mt-3 text-sm uppercase tracking-[0.2em] text-slate-300">Programmes disponibles</p>
-          </div>
-          <div className="rounded-[2rem] bg-white/10 border border-white/20 p-7 shadow-2xl backdrop-blur-md">
-            <h3 className="text-4xl font-extrabold text-white">95%</h3>
-            <p className="mt-3 text-sm uppercase tracking-[0.2em] text-slate-300">Insertion professionnelle</p>
+
+          <div className="mt-14 grid gap-4 sm:grid-cols-3">
+            {[
+              { value: '500+', label: 'Étudiants formés' },
+              { value: '18', label: 'Filières actives' },
+              { value: '95%', label: 'Insertion professionnelle' },
+            ].map((item) => (
+              <div key={item.label} className="rounded-[1.75rem] border border-white/15 bg-white/10 p-6 backdrop-blur-md shadow-[0_20px_50px_-30px_rgba(0,0,0,0.45)]">
+                <p className="text-3xl font-bold text-white">{item.value}</p>
+                <p className="mt-3 text-sm uppercase tracking-[0.2em] text-slate-300">{item.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </motion.div>
@@ -172,69 +171,121 @@ function Filières() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const formations = [
-    { title: 'Électricité Bâtiments', image: '/formations/electricite-batiments.jpeg', category: 'Technique' },
-    { title: 'Froid et Climatisation', image: '/formations/froid-et-climatisation.jpeg', category: 'Technique' },
-    { title: 'Tôlerie Industrielle', image: '/formations/tolerie-industrielle.jpeg', category: 'Technique' },
-    { title: 'Géomètre Topographe', image: '/formations/geometre-topographe.jpeg', category: 'Technique' },
-    { title: 'Énergie Solaire', image: '/formations/energie-solaire.jpeg', category: 'Technique' },
-    { title: 'Chaudronnerie', image: '/formations/chaudronnerie.jpeg', category: 'Technique' },
-    { title: 'Plomberie Sanitaire', image: '/formations/plomberie-sanitaire.jpeg', category: 'Technique' },
-    { title: 'Maintenance Informatique', image: '/formations/maintenance-informatique.jpeg', category: 'Technique' },
-    { title: 'Marketing Digital', image: '/formations/marketing-digital.jpeg', category: 'Pro Digital' },
-    { title: 'Programmation', image: '/formations/programmation.jpeg', category: 'Pro Digital' },
-    { title: 'Infographie 2D/3D', image: '/formations/infographie-2d-3d.jpeg', category: 'Créatif' },
-    { title: 'Secrétariat Bureautique', image: '/formations/secretariat-bureautique.jpeg', category: 'Bureau' },
-    { title: 'Cuisine & Bar', image: '/formations/cuisine-bar.jpeg', category: 'Hôtellerie' },
-    { title: 'Boulangerie Pâtisserie', image: '/formations/boulangerie-patisserie.jpeg', category: 'Hôtellerie' },
-    { title: 'Hébergement', image: '/formations/hebergement.jpeg', category: 'Hôtellerie' },
-    { title: 'Service Traiteur', image: '/formations/service-traiteur.jpeg', category: 'Hôtellerie' },
-    { title: 'Cuisine Internationale', image: '/formations/cuisine-internationale.jpeg', category: 'Hôtellerie' },
-    { title: 'Soudure Industrielle', image: '/technicien.jpeg', category: 'Technique' },
+  const techniqueFormations = [
+    { title: 'Froid et Climatisation', image: '/formations/froid-et-climatisation.jpeg' },
+    { title: 'Électricité Bâtiment & Industrielle', image: '/formations/electricite-batiments.jpeg' },
+    { title: 'Plomberie et Installation Sanitaire', image: '/formations/plomberie-sanitaire.jpeg' },
+    { title: 'Fabrication Mécanique', image: '/formations/fabrication-mecanique.jpeg' },
+    { title: 'Chaudronnerie', image: '/formations/chaudronnerie.jpeg' },
+    { title: 'Géomètre Topographe', image: '/formations/geometre-topographe.jpeg' },
+    { title: 'Maintenance Informatique', image: '/formations/maintenance-informatique.jpeg' },
+    { title: 'Énergie Solaire', image: '/formations/energie-solaire.jpeg' },
+    { title: 'Infographie 2D & 3D', image: '/formations/infographie-2d-3d.jpeg' },
+    { title: 'Marketing Digital', image: '/formations/marketing-digital.jpeg' },
+    { title: 'Secrétariat Bureautique', image: '/formations/secretariat-bureautique.jpeg' },
+    { title: 'Programmation', image: '/formations/programmation.jpeg' },
+    { title: 'Dessin Assisté par Ordinateur (DAO)', image: '/formations/dessin-assiste-par-ordinateur.jpeg' },
+  ];
+
+  const hotellerieFormations = [
+    { title: 'Cuisine - Bar - Restauration', image: '/formations/cuisine-bar.jpeg' },
+    { title: 'Boulangerie Pâtisserie', image: '/formations/boulangerie-patisserie.jpeg' },
+    { title: 'Hébergement', image: '/formations/hebergement.jpeg' },
+    { title: 'Service Traiteur', image: '/formations/service-traiteur.jpeg' },
+    { title: 'Cuisine Internationale', image: '/formations/cuisine-internationale.jpeg' },
   ];
 
   return (
-    <section id="filières" ref={ref} className="py-24 bg-slate-950 text-white overflow-hidden">
-      <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
-      <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
-      <div className="relative max-w-7xl mx-auto px-4">
+    <section id="filières" ref={ref} className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(13,71,161,0.16),transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(255,111,0,0.15),transparent_35%),#070b17] text-white py-24">
+      <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#0D47A1]/15 blur-3xl" />
+      <div className="absolute -right-24 bottom-20 h-72 w-72 rounded-full bg-[#FF6F00]/15 blur-3xl" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0D47A1]/20 to-transparent" />
+      <div className="relative mx-auto max-w-7xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <p className="text-sm uppercase tracking-[0.3em] text-orange-300 mb-4">Programme d'excellence</p>
-          <h2 className="text-5xl font-bold mb-4">Nos formations spécialisées</h2>
-          <p className="mx-auto max-w-3xl text-lg text-slate-300">Des parcours métiers conçus pour former rapidement des professionnels opérationnels, avec des images et expériences adaptées à chaque filière.</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#FF6F00] mb-4">Nos filières</p>
+          <h2 className="text-4xl font-bold text-slate-900 sm:text-5xl">Formations professionnelles</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
+            Apprenez avec des parcours métiers conçus pour les besoins du Cameroun, entre pratique et insertion rapide.
+          </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {formations.map((formation, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ delay: i * 0.05 }}
-              className="group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/90 shadow-[0_20px_80px_-40px_rgba(15,23,42,0.9)] transition hover:-translate-y-1 hover:shadow-[0_35px_90px_-35px_rgba(15,23,42,0.85)]"
-            >
-              <div className="relative h-72 w-full overflow-hidden">
-                <Image src={formation.image} alt={formation.title} fill className="object-cover transition duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
-                <div className="absolute left-5 bottom-5 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-sm border border-white/15">
-                  {formation.category}
-                </div>
+        <div className="grid gap-12">
+          <div className="rounded-[2rem] border border-slate-200/80 bg-slate-950/95 p-8 shadow-[0_25px_80px_-40px_rgba(15,23,42,0.8)] text-white">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="text-2xl font-semibold">Filières Techniques</h3>
+                <p className="mt-2 max-w-xl text-slate-300">Des formations techniques solides pour les métiers du bâtiment, de l'industrie, de l'énergie et du digital.</p>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-white mb-3">{formation.title}</h3>
-                <p className="text-slate-400">6 à 12 mois d’accompagnement intensif avec projets réels, stages et insertion.</p>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-sm uppercase tracking-[0.2em] text-orange-300">Niveau pratique</span>
-                  <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs text-slate-200">Programme 2026</span>
-                </div>
+              <span className="inline-flex rounded-full bg-[#FF6F00] px-4 py-2 text-sm font-semibold text-white">13 programmes</span>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {techniqueFormations.map((formation, i) => (
+                <motion.div
+                  key={formation.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/95 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.7)] transition hover:-translate-y-1 hover:shadow-[0_30px_90px_-40px_rgba(0,0,0,0.8)]"
+                >
+                  <div className="relative h-56 w-full overflow-hidden bg-slate-900">
+                    <Image src={formation.image} alt={formation.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+                    <div className="absolute left-5 top-5 rounded-full bg-orange-500/95 px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-lg">
+                      Technique
+                    </div>
+                  </div>
+                  <div className="space-y-4 p-6 bg-slate-950/95">
+                    <h4 className="text-lg font-semibold text-white">{formation.title}</h4>
+                    <p className="text-sm leading-6 text-slate-400">Formation pratique, encadrement expert et insertion rapide sur le terrain.</p>
+                    <button className="inline-flex items-center rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">
+                      En savoir plus
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-slate-200/80 bg-white p-8 shadow-[0_25px_80px_-40px_rgba(15,23,42,0.08)]">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="text-2xl font-semibold text-slate-900">Filières Hôtelières</h3>
+                <p className="mt-2 max-w-xl text-slate-600">Des formations en cuisine, pâtisserie, hébergement et service traiteur pour des carrières d’excellence.</p>
               </div>
-            </motion.div>
-          ))}
+              <span className="inline-flex rounded-full bg-[#0D47A1] px-4 py-2 text-sm font-semibold text-white">5 programmes</span>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {hotellerieFormations.map((formation, i) => (
+                <motion.div
+                  key={formation.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/95 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.7)] transition hover:-translate-y-1 hover:shadow-[0_30px_90px_-40px_rgba(0,0,0,0.8)]"
+                >
+                  <div className="relative h-56 w-full overflow-hidden bg-slate-900">
+                    <Image src={formation.image} alt={formation.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+                    <div className="absolute left-5 top-5 rounded-full bg-[#0D47A1]/95 px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-lg">
+                      Hôtellerie
+                    </div>
+                  </div>
+                  <div className="space-y-4 p-6 bg-slate-950/95">
+                    <h4 className="text-lg font-semibold text-white">{formation.title}</h4>
+                    <p className="text-sm leading-6 text-slate-400">Une formation moderne pour les métiers de cuisine, service et accueil à haute exigence.</p>
+                    <button className="inline-flex items-center rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">
+                      En savoir plus
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -479,7 +530,7 @@ function Contact() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" ref={ref} className="py-20 bg-slate-950 text-white">
+    <section id="contact" ref={ref} className="py-20 bg-[#0D47A1] text-white">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -487,52 +538,48 @@ function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-[0.28em] text-orange-300 mb-4">Contact officiel</p>
-          <h2 className="text-4xl font-bold mb-4 text-white">Entrons en contact</h2>
-          <p className="text-lg text-slate-300">Nous répondons rapidement à toutes vos demandes d’inscription et de partenariat.</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#FF6F00] mb-4">Contactez notre équipe</p>
+          <h2 className="text-4xl font-bold mb-4">Une question ? Inscrivez-vous aujourd’hui</h2>
+          <p className="text-lg text-slate-200">Nous sommes disponibles pour vous accompagner dans votre projet de formation professionnelle.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            className="text-center"
-          >
-            <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Phone className="text-white" size={28} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Téléphone</h3>
-            <p className="text-gray-600">+237 675 311 138</p>
-            <p className="text-gray-600">+237 641 224 718</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.1 }}
-            className="text-center"
-          >
-            <div className="bg-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="text-white" size={28} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Email</h3>
-            <p className="text-gray-600">institutifpmtc@gmail.com</p>
-            <p className="text-gray-600">info@ifp-mtc.cm</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2 }}
-            className="text-center"
-          >
-            <div className="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MapPin className="text-white" size={28} />
-            </div>
-            <h3 className="font-bold text-lg mb-2">Localisation</h3>
-            <p className="text-gray-600">Douala, Cameroun</p>
-            <p className="text-gray-600">Bonabéri garage</p>
-          </motion.div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              icon: <Phone size={28} className="text-white" />,
+              title: 'Téléphone',
+              lines: ['+237 675 311 138', '+237 641 224 718'],
+              bg: 'bg-white/10',
+            },
+            {
+              icon: <Mail size={28} className="text-white" />,
+              title: 'Email',
+              lines: ['institutifpmtc@gmail.com', 'info@ifp-mtc.cm'],
+              bg: 'bg-[#FF6F00]/10',
+            },
+            {
+              icon: <MapPin size={28} className="text-white" />,
+              title: 'Localisation',
+              lines: ['Bonabo garage', 'Douala, Cameroun'],
+              bg: 'bg-white/10',
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: index * 0.08 }}
+              className="rounded-[2rem] border border-white/10 bg-white/10 p-8 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.4)]"
+            >
+              <div className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full ${item.bg}`}>
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+              {item.lines.map((line) => (
+                <p key={line} className="text-slate-200">{line}</p>
+              ))}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -545,7 +592,7 @@ function MapSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-20 bg-slate-900 text-white">
+    <section ref={ref} className="py-20 bg-slate-950 text-white">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -553,15 +600,15 @@ function MapSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-[0.28em] text-orange-300 mb-4">Localisation</p>
-          <h2 className="text-4xl font-bold mb-4">Trouvez-nous sur la carte</h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">Visitez notre campus à Douala et découvrez l’environnement de formation qui inspire nos étudiants.</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#FF6F00] mb-4">Localisation</p>
+          <h2 className="text-4xl font-bold mb-4">Bonabéri Garage, Douala</h2>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">Retrouvez-nous facilement grâce à cette carte et venez visiter notre institut de formation.</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1.3fr_0.9fr] gap-8">
-          <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 bg-white/5">
+        <div className="grid gap-8 xl:grid-cols-[1.4fr_0.9fr]">
+          <div className="rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 shadow-[0_40px_120px_-55px_rgba(0,0,0,0.7)]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.2831539364335!2d9.71389027595249!3d4.051749397048292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10610f4783e9d37d%3A0x63f519c574b4edb5!2sDouala%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1718707536904!5m2!1sfr!2sfr"
+              src="https://maps.google.com/maps?q=Bonabo%20Garage%20Douala&t=&z=15&ie=UTF8&iwloc=&output=embed"
               className="w-full h-full min-h-[420px] border-0"
               allowFullScreen
               loading="lazy"
@@ -569,23 +616,25 @@ function MapSection() {
             />
           </div>
           <div className="space-y-6">
-            <div className="rounded-3xl bg-slate-950/95 border border-white/10 p-8 shadow-2xl">
-              <p className="text-sm uppercase tracking-[0.28em] text-orange-300">Adresse principale</p>
-              <h3 className="text-2xl font-semibold text-white mt-4">Bonabéri garage, Douala</h3>
-              <p className="mt-4 text-slate-300">Notre institut se trouve dans un quartier accessible, proche des axes principaux et facilement desservi par les transports locaux.</p>
+            <div className="rounded-[2rem] bg-white/5 border border-white/10 p-8 shadow-[0_25px_60px_-30px_rgba(0,0,0,0.6)]">
+              <p className="text-sm uppercase tracking-[0.28em] text-[#FF6F00]">Adresse</p>
+              <h3 className="text-2xl font-semibold text-white mt-4">Bonabo Garage</h3>
+              <p className="mt-4 text-slate-300">Sur le prolongement du Boulevard de la République, Douala. Un accès facile pour les étudiants et les visiteurs.</p>
             </div>
-            <div className="rounded-3xl bg-slate-950/95 border border-white/10 p-8 shadow-2xl grid gap-4">
-              <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-orange-300">Téléphone</p>
-                <p className="mt-2 text-white font-semibold">+237 675 311 138</p>
-              </div>
-              <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-orange-300">Email</p>
-                <p className="mt-2 text-white font-semibold">institutifpmtc@gmail.com</p>
-              </div>
-              <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-orange-300">WhatsApp</p>
-                <a href="https://wa.me/237675311138" className="mt-2 inline-flex items-center gap-2 text-white font-semibold underline">Envoyer un message</a>
+            <div className="rounded-[2rem] bg-[#0D47A1] p-8 shadow-[0_25px_60px_-30px_rgba(0,0,0,0.6)]">
+              <div className="space-y-5">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#FF6F00]">Téléphone</p>
+                  <p className="mt-2 text-white font-semibold">+237 675 311 138</p>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#FF6F00]">Email</p>
+                  <p className="mt-2 text-white font-semibold">institutifpmtc@gmail.com</p>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#FF6F00]">WhatsApp</p>
+                  <a href="https://wa.me/237675311138" className="mt-2 inline-flex items-center gap-2 text-white font-semibold underline">Envoyer un message</a>
+                </div>
               </div>
             </div>
           </div>
@@ -598,35 +647,33 @@ function MapSection() {
 // Footer
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-slate-950 text-white py-10">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="grid gap-8 md:grid-cols-3">
           <div>
             <h3 className="font-bold text-lg mb-4">IFP-MTC AFES</h3>
-            <p className="text-gray-400">Institut de formation professionnelle d'excellence</p>
+            <p className="text-slate-400">Institut de formation professionnelle à Douala. Un parcours pratique pour préparer l’emploi.</p>
           </div>
+
           <div>
-            <h3 className="font-bold mb-4">Navigation</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="font-bold text-lg mb-4">Navigation rapide</h3>
+            <ul className="space-y-2 text-slate-400">
               <li><a href="#accueil" className="hover:text-white transition">Accueil</a></li>
               <li><a href="#filières" className="hover:text-white transition">Filières</a></li>
               <li><a href="#galerie" className="hover:text-white transition">Galerie</a></li>
               <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
             </ul>
           </div>
+
           <div>
-            <h3 className="font-bold mb-4">Horaires</h3>
-            <p className="text-gray-400">Lun-Ven: 08h-18h</p>
-            <p className="text-gray-400">Sam: 09h-16h</p>
-            <p className="text-gray-400">Dim: Fermé</p>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">Réseaux</h3>
-            <a href="https://wa.me/237675311138" className="text-gray-400 hover:text-white transition">WhatsApp</a>
+            <h3 className="font-bold text-lg mb-4">Contact</h3>
+            <p className="text-slate-400">+237 675 311 138</p>
+            <p className="text-slate-400">institutifpmtc@gmail.com</p>
+            <p className="text-slate-400">Bonabo garage, Douala</p>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-slate-500">
           <p>&copy; 2024 IFP-MTC AFES. Tous droits réservés.</p>
         </div>
       </div>

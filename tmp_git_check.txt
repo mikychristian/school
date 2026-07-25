@@ -1,0 +1,12 @@
+﻿## main
+
+---REMOTE---
+origin	https://github.com/martioCTRL/school.git (fetch)
+origin	https://github.com/martioCTRL/school.git (push)
+
+---GH---
+GH_MISSING
+---LAST_COMMIT---
+9f91cc1 Initial commit
+
+

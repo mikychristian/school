@@ -26,7 +26,8 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-white/20 shadow-lg">
+    
+    <nav className="backdrop-blur-xl bg-white/80 border-b border-white/20 shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-24">
           <a href="#" className="flex items-center gap-4">
@@ -78,7 +79,7 @@ function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-24 sm:px-10"
+        className="relative z-10 mx-auto flex min-h-[600px] max-w-7xl flex-col justify-center px-6 py-24 sm:min-h-screen sm:px-10"
       >
         <div className="max-w-3xl">
           <span className="inline-flex rounded-full border border-orange-400/40 bg-orange-400/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">

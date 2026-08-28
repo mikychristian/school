@@ -1,8 +1,11 @@
-import { NextResponse } from "next/server";
+import { MetadataRoute } from "next";
 
-export function GET() {
-  const content = `User-agent: *\nAllow: /\nSitemap: https://ifpmtc.vercel.app/sitemap.xml\n`;
-  return new NextResponse(content, {
-    headers: { "Content-Type": "text/plain" },
-  });
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: "https://ifpmtc.vercel.app/sitemap.xml",
+  };
 }
